@@ -1,4 +1,4 @@
-# Groupbuy App Front End
+# GroupBuy App
 
 Developed by:
 - Nant Arunyawongsakorn
