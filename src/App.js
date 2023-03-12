@@ -1,5 +1,6 @@
 // import packages
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from 'react';
 
 // Import components
 import Home from "./components/Home.js";
@@ -13,10 +14,12 @@ import Order from "./components/Order.js";
 import Login from "./components/Login.js";
 
 export default function App() {
+    const [user, setUser] = useState(null);
+
     return (
     <BrowserRouter>
         <div>
-            <Header />
+            <Header user={user} setUser = {setUser}/>
             
             <Routes>
                 <Route path="/" element = {<Home />} />
