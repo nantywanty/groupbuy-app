@@ -14,13 +14,12 @@ import Order from "./components/Order.js";
 import Login from "./components/Login.js";
 
 export default function App() {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null); // logged-in use
 
     return (
     <BrowserRouter>
         <div>
             <Header user={user} setUser = {setUser}/>
-            
             <Routes>
                 <Route path="/" element = {<Home />} />
                 <Route path="/search" element = {<Search />} />
@@ -30,7 +29,6 @@ export default function App() {
                 <Route path="/order" element = {<Order />} />
                 <Route path="/login" element = {<Login />} />
             </Routes>
-
             <Footer />
         </div>
     </BrowserRouter>
