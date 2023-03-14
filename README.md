@@ -1,10 +1,11 @@
 # GroupBuy App
 
 Developed by:
-- Nant Arunyawongsakorn
-- Dennis Ang
+
 - Darius Yip
+- Dennis Ang
 - Liu Yue
+- Nant Arunyawongsakorn
 
 Requirements:
 - Node version 19.7.0
