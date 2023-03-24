@@ -10,7 +10,7 @@ export default function Home() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            flexDirection: 'column'
+            flexDirection: 'column',
         }}>
             <h1 className="display-1 text-light">Welcome to Grouper!</h1>
             <h2 className="text-light">Sign in to coordinate or join a group purchase!</h2>
