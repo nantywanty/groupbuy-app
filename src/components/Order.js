@@ -60,10 +60,6 @@ export default function Order() {
                                         {Array(5).fill(1).map((n, i) => (
                                             <option key={i}>{1+i}</option>
                                         ))}
-                                        {/* <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option> */}
                                     </Form.Select>
                                 </FloatingLabel>
                             </Col>
