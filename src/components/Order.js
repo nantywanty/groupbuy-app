@@ -26,6 +26,19 @@ export default function Order() {
         }
     };
 
+    // Dummy data, actual data to be retrieved from database
+    const listing = {
+        owner: "Nant",
+        image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTNFJtaMn_Y5zPbpVWA0ojPrD_WqKhvGgnfw&usqp=CAU",
+        name: "Fuji Apples",
+        description: "Fresh Fuji apples from Japan.",
+        unit_price: 5.00,
+        remaining_quantity: 5,
+        end_date: "2023-03-15",
+        delivery_date: "2023-02-15",
+        status: "Open"
+    }
+
     return (
         <div className="p-5" style={{
             backgroundImage: `url("https://png.pngtree.com/thumb_back/fw800/background/20200113/pngtree-chinese-new-year-2020-celebration-sale-template-for-background-and-wallpaper-image_327185.jpg")`,
@@ -36,14 +49,35 @@ export default function Order() {
             alignItems: 'center',
             justifyContent: 'center',
         }}>
-            <Card style = {{width: '35rem'}}>
+            <Card style = {{width: '45rem'}}>
                 <Card.Header as="h5">New Order</Card.Header>
-                <Card.Img className="px-3 pt-3"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTNFJtaMn_Y5zPbpVWA0ojPrD_WqKhvGgnfw&usqp=CAU"/>
+                <Card.Img className="px-3 pt-3"  src={listing.image_url}/>
                 <Card.Body>
-                    <Card.Title>Item Name</Card.Title>
-                    <Card.Text>Sold by: </Card.Text>
-                    <Card.Text>Unit price: </Card.Text>
-                    <Card.Text>Description: </Card.Text>
+                    <Row className="mb-3">
+                        <Col>
+                            <Card.Title>{listing.name}</Card.Title>
+                        </Col>
+                        <Col xs="auto">
+                            <Card.Title>Status: {listing.status}</Card.Title>
+                        </Col>
+                    </Row>
+                    <Row className="mb-3">
+                        <Col>
+                            <Card.Text>Sold by: {listing.owner}</Card.Text>
+                        </Col>
+                        <Col xs="auto">
+                            <Card.Text>Closing date: {listing.end_date}</Card.Text>
+                        </Col>
+                    </Row>
+                    <Row className="mb-3">
+                        <Col>
+                            <Card.Text>Unit price: ${listing.unit_price.toFixed(2)}</Card.Text>
+                        </Col>
+                        <Col xs="auto">
+                            <Card.Text>Delivery date: {listing.delivery_date}</Card.Text>
+                        </Col>
+                    </Row>
+                    <Card.Text>Description: {listing.description}</Card.Text>
 
                     <Form noValidate validated={true} onSubmit={handleSubmit}>
                         <Row className="mb-3">
@@ -57,14 +91,14 @@ export default function Order() {
                                         onChange={handleChange} 
                                         required
                                     >
-                                        {Array(5).fill(1).map((n, i) => (
+                                        {Array(listing.remaining_quantity).fill(1).map((n, i) => (
                                             <option key={i}>{1+i}</option>
                                         ))}
                                     </Form.Select>
                                 </FloatingLabel>
                             </Col>
-                            <Col sm={4} style={{ display: 'flex', alignItems: 'center' }}>
-                                Max available: 4
+                            <Col xs="auto" sm={4} style={{ display: 'flex', alignItems: 'center' }}>
+                                Max available: {listing.remaining_quantity}
                             </Col>
                         </Row>
                         <Row className="mb-3">
@@ -106,7 +140,7 @@ export default function Order() {
                         </FloatingLabel>
                         <Row className="mb-1">
                             <Col style={{ display: 'flex', alignItems: 'center' }}>
-                                <Card.Title>Total: ${5.00*form.quantity}</Card.Title>
+                                <Card.Title>Total: ${(listing.unit_price*form.quantity).toFixed(2)}</Card.Title>
                             </Col>
                             <Col xs="auto">
                                 <Button variant="danger" type="submit">Submit</Button>
