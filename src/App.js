@@ -8,7 +8,7 @@ import Footer from "./components/Footer.js";
 import Header from "./components/Header.js";
 import Search from "./components/Search.js";
 import MyListings from "./components/MyListings.js";
-import Listing from "./components/Listing.js";
+import Listings from "./components/Listing.js";
 import MyOrders from "./components/MyOrders.js";
 import Order from "./components/Order.js";
 import Login from "./components/Login.js";
@@ -24,7 +24,7 @@ export default function App() {
                 <Route path="/" element = {<Home />} />
                 <Route path="/search" element = {<Search />} />
                 <Route path="/mylistings" element = {<MyListings />} />
-                <Route path="/listing" element = {<Listing />} />
+                <Route path="/listings" element = {<Listings />} />
                 <Route path="/myorders" element = {<MyOrders />} />
                 <Route path="/order" element = {<Order />} />
                 <Route path="/login" element = {<Login />} />
