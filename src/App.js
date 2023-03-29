@@ -8,7 +8,7 @@ import Footer from "./components/Footer.js";
 import Header from "./components/Header.js";
 import Search from "./components/Search.js";
 import MyListings from "./components/MyListings.js";
-import Listings from "./components/Listing.js";
+import Listings from "./components/Listings.js";
 import MyOrders from "./components/MyOrders.js";
 import Order from "./components/Order.js";
 import Login from "./components/Login.js";
