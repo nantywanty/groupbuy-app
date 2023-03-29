@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 import ListGroup from "react-bootstrap/ListGroup";
 
-export default function MyListings() {
+export default function Listings() {
   const [listings, setListings] = useState([]);
 
   useEffect(() => {
