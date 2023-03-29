@@ -57,7 +57,7 @@ export default function MyOrders() {
                             <Card.Img className="px-3 pt-3"  src={order.listing.image_url}/>
                             <Card.Body>
                                 <Card.Title>{order.listing.name}</Card.Title>
-                                <Card.Text>Sold by: {order.listing.owner}</Card.Text>
+                                <Card.Subtitle className="mb-2 text-muted">Sold by: {order.listing.owner}</Card.Subtitle>
                                 <Card.Text>Listing status: {order.listing.status}</Card.Text>
                                 <Card.Text>Closing date: {order.listing.end_date}</Card.Text>
                                 <Card.Text>Ordered quantity: {order.quantity}</Card.Text>
