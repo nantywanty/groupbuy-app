@@ -1,24 +1,19 @@
 // Packages
 import { useState } from "react";
-import {
-  Container,
-  Nav,
-  Navbar,
-  Offcanvas,
-} from "react-bootstrap";
+import { Container, Nav, Navbar, Offcanvas } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
 // Components
 import Login from "./Login.js";
 
 export default function Header(props) {
-  const [searchKey, setSearchKey] = useState("");
+  const [search_query, setSearch_query] = useState("");
   const navigate = useNavigate();
 
   // handler when user clicks on search button
   function handleSubmit(event) {
     event.preventDefault();
-    const search = { searchKey };
+    const search = { search_query };
     navigate("/search", { state: search });
   }
 
@@ -34,8 +29,8 @@ export default function Header(props) {
               <input
                 type="text"
                 placeholder="Search listings"
-                value={searchKey}
-                onChange={(event) => setSearchKey(event.target.value)}
+                value={search_query}
+                onChange={(event) => setSearch_query(event.target.value)}
                 required
               />
               <input type="submit" value="Search" />
