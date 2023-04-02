@@ -26,8 +26,13 @@ export default function Listings() {
           return (
             <div key={listing.listing_id}>
               <Card bg="light" border="dark" style={{ width: "18rem" }}>
-                <Card.Img variant="top" src={listing.listing_image_url} />
-                <Card.Body>
+                <Card.Img
+                  variant="top"
+                  src={listing.listing_image_url}
+                  height="250"
+                  width="auto"
+                />
+                <Card.Body className="d-flex flex-column justify-content-end align-items-center">
                   <Card.Title>{listing.listing_name}</Card.Title>
                   <Card.Text>{listing.listing_description}</Card.Text>
                 </Card.Body>
@@ -45,7 +50,7 @@ export default function Listings() {
                     Delivery date: {listing.listing_delivery_date}
                   </ListGroup.Item>
                 </ListGroup>
-                <Card.Body>
+                <Card.Body className="d-flex flex-column justify-content-end align-items-center">
                   <Card.Link href="#">Place Order</Card.Link>
                 </Card.Body>
               </Card>
