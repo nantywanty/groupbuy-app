@@ -10,17 +10,16 @@ export default function Search() {
 
   useEffect(() => {
     async function getListingsFromAPI() {
+      console.log(location.state);
       const responsePromise = await fetch(
-        "http://gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/get_listings"
-      );
-      //      ,{
-      //        method: "POST",
-      //        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      //        body: JSON.stringify(location.state),
-      //      }
-      // ); // pending back end endpoint
+        "http://Gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/search_listings/",
+        {
+          method: "POST",
+          body: JSON.stringify(location.state),
+        }
+      ); 
       const responseJSON = await responsePromise.json();
-      const searchResults = responseJSON.data.listings_info;
+      const searchResults = responseJSON.data.search_info;
       setSearchResults([...searchResults]);
     }
     getListingsFromAPI();
@@ -34,8 +33,13 @@ export default function Search() {
           return (
             <div key={searchResult.listing_id}>
               <Card bg="light" border="dark" style={{ width: "18rem" }}>
-                <Card.Img variant="top" src={searchResult.listing_image_url} />
-                <Card.Body>
+                <Card.Img
+                  variant="top"
+                  src={searchResult.listing_image_url}
+                  height="250"
+                  width="auto"
+                />
+                <Card.Body className="d-flex flex-column justify-content-end align-items-center">
                   <Card.Title>{searchResult.listing_name}</Card.Title>
                   <Card.Text>{searchResult.listing_description}</Card.Text>
                 </Card.Body>
