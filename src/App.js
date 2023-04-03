@@ -20,7 +20,7 @@ export default function App() {
     return (
     <BrowserRouter>
         <div className="App" style={{
-            backgroundImage: `url("https://png.pngtree.com/thumb_back/fw800/background/20200113/pngtree-chinese-new-year-2020-celebration-sale-template-for-background-and-wallpaper-image_327185.jpg")`,
+            backgroundImage: `url("https://c.stocksy.com/a/wCFA00/z9/2441742.jpg")`,
             backgroundRepeat: 'repeat',
             backgroundSize: '700px',
         }}>

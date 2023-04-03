@@ -24,7 +24,7 @@ export default function MyOrders(props) {
 
     return (
         <div className="p-3"> 
-            <h2 className="text-light p-2">My Orders</h2>
+            <h2 className="p-2">My Orders</h2>
             <CardGroup>
                 {orders ? (
                     //orders is not empty
