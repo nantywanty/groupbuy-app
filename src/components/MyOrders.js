@@ -1,7 +1,7 @@
 import { Card, CardGroup, Row, Col, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
-export default function MyOrders() {
+export default function MyOrders(props) {
     
     const [orders, setOrders] = useState(null);
     
@@ -10,8 +10,9 @@ export default function MyOrders() {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ order_owner: 'ywhdarius@gmail.com' })
+            body: JSON.stringify({ order_owner: props.user ? props.user.email : null })
         };
+        console.log(props.user ? props.user.email : null);
         fetch('http://Gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/get_orders_for_user/', requestOptions)
             .then(response => response.json())
             .then(data => setOrders(Object.values(data.data.user_orders_info)))
