@@ -1,13 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, FloatingLabel, Form, Row, Col, Button } from 'react-bootstrap';
 
-export default function Order() {
+export default function Order(props) {
     // Form data
     const [form, setForm] = useState({
         quantity: 1,
-        address: '',
-        postal_code: '',
-        contact_details: '',
+        address: props.order ? props.order.order_address : '',
+        postal_code: props.order ? props.order.order_postal_code : '',
+        contact_details: props.order ? props.order.order_contact_details : '',
     });
 
     // When an input field is changed
@@ -26,19 +26,6 @@ export default function Order() {
         }
     };
 
-    // Dummy data, actual data to be retrieved from database
-    const listing = {
-        owner: "Nant",
-        image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTNFJtaMn_Y5zPbpVWA0ojPrD_WqKhvGgnfw&usqp=CAU",
-        name: "Fuji Apples",
-        description: "Fresh Fuji apples from Japan.",
-        unit_price: 5.00,
-        remaining_quantity: 5,
-        end_date: "2023-03-15",
-        delivery_date: "2023-02-15",
-        status: "Open"
-    }
-
     return (
         <div className="p-5" style={{
             display: 'flex',
@@ -46,34 +33,38 @@ export default function Order() {
             justifyContent: 'center',
         }}>
             <Card style = {{width: '45rem'}}>
-                <Card.Header as="h5">New Order</Card.Header>
-                <Card.Img className="px-3 pt-3"  src={listing.image_url}/>
+                {props.order ? (
+                    <Card.Header as="h5">Edit Order</Card.Header>
+                ):(
+                    <Card.Header as="h5">New Order</Card.Header>
+                )}
+                <Card.Img className="px-3 pt-3"  src={props.listing.listing_image_url}/>
                 <Card.Body>
                     <Row className="mb-3">
                         <Col>
-                            <Card.Title>{listing.name}</Card.Title>
+                            <Card.Title>{props.listing.listing_name}</Card.Title>
                         </Col>
                         <Col xs="auto">
-                            <Card.Title>Status: {listing.status}</Card.Title>
+                            <Card.Title>Status: {props.listing.listing_status}</Card.Title>
                         </Col>
                     </Row>
                     <Row className="mb-3">
                         <Col>
-                            <Card.Text>Sold by: {listing.owner}</Card.Text>
+                            <Card.Text>Sold by: {props.listing.listing_owner}</Card.Text>
                         </Col>
                         <Col xs="auto">
-                            <Card.Text>Closing date: {listing.end_date}</Card.Text>
+                            <Card.Text>Closing date: {props.listing.listing_end_date}</Card.Text>
                         </Col>
                     </Row>
                     <Row className="mb-3">
                         <Col>
-                            <Card.Text>Unit price: ${listing.unit_price.toFixed(2)}</Card.Text>
+                            <Card.Text>Unit price: ${props.listing.listing_unit_price.toFixed(2)}</Card.Text>
                         </Col>
                         <Col xs="auto">
-                            <Card.Text>Delivery date: {listing.delivery_date}</Card.Text>
+                            <Card.Text>Delivery date: {props.listing.listing_delivery_date}</Card.Text>
                         </Col>
                     </Row>
-                    <Card.Text>Description: {listing.description}</Card.Text>
+                    <Card.Text>Description: {props.listing.listing_description}</Card.Text>
 
                     <Form noValidate validated={true} onSubmit={handleSubmit}>
                         <Row className="mb-3">
@@ -87,14 +78,14 @@ export default function Order() {
                                         onChange={handleChange} 
                                         required
                                     >
-                                        {Array(listing.remaining_quantity).fill(1).map((n, i) => (
+                                        {Array(props.listing.listing_remaining_quantity).fill(1).map((n, i) => (
                                             <option key={i}>{1+i}</option>
                                         ))}
                                     </Form.Select>
                                 </FloatingLabel>
                             </Col>
                             <Col xs="auto" sm={4} style={{ display: 'flex', alignItems: 'center' }}>
-                                Max available: {listing.remaining_quantity}
+                                Max available: {props.listing.listing_remaining_quantity}
                             </Col>
                         </Row>
                         <Row className="mb-3">
@@ -136,7 +127,7 @@ export default function Order() {
                         </FloatingLabel>
                         <Row className="mb-1">
                             <Col style={{ display: 'flex', alignItems: 'center' }}>
-                                <Card.Title>Total: ${(listing.unit_price*form.quantity).toFixed(2)}</Card.Title>
+                                <Card.Title>Total: ${(props.listing.listing_unit_price*form.quantity).toFixed(2)}</Card.Title>
                             </Col>
                             <Col xs="auto">
                                 <Button variant="danger" type="submit">Submit</Button>

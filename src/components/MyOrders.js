@@ -1,8 +1,10 @@
 import { Card, CardGroup, Row, Col, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
 export default function MyOrders(props) {
-    
+    // internal state variables used within component only
+    const navigate = useNavigate()
     const [orders, setOrders] = useState(null);
     const [listings, setListings] = useState(null);
 
@@ -11,8 +13,8 @@ export default function MyOrders(props) {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ order_owner: props.user ? props.user.email : null }) // pull user's orders
-            // body: JSON.stringify({ order_owner: "ywhdarius@gmail.com" }) // pull test orders
+            // body: JSON.stringify({ order_owner: props.user ? props.user.email : null }) // pull user's orders
+            body: JSON.stringify({ order_owner: "ywhdarius@gmail.com" }) // pull test orders
         };
         fetch('http://Gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/get_orders_for_user/', requestOptions)
             .then(response => response.json())
@@ -51,7 +53,13 @@ export default function MyOrders(props) {
                                             </Col>
                                             <Col xs="auto">
                                                 {order.order_status === "placed" ? (
-                                                    <Button variant="danger">Edit/Cancel</Button>
+                                                    <Button variant="danger" onClick={() => {
+                                                        props.setOrder(order);
+                                                        props.setListing(listing);
+                                                        navigate("/order");
+                                                    }}>
+                                                        Edit/Cancel
+                                                    </Button>
                                                 ):(
                                                     <Button variant="secondary" disabled>Edit/Cancel</Button>
                                                 )}
