@@ -14,7 +14,8 @@ import Order from "./components/Order.js";
 import Login from "./components/Login.js";
 
 export default function App() {
-    const [user, setUser] = useState(null); // logged-in use
+    const [user, setUser] = useState(null); // logged-in user
+    const [order, setOrder] = useState(null); // specific order to be displayed in order page
 
     return (
     <BrowserRouter>
@@ -29,8 +30,8 @@ export default function App() {
                 <Route path="/search" element = {<Search />} />
                 <Route path="/mylistings" element = {<MyListings />} />
                 <Route path="/listings" element = {<Listings />} />
-                <Route path="/myorders" element = {<MyOrders />} />
-                <Route path="/order" element = {<Order />} />
+                <Route path="/myorders" element = {<MyOrders user={user} setOrder={setOrder} />} />
+                <Route path="/order" element = {<Order user={user} order={order}/>} />
                 <Route path="/login" element = {<Login />} />
             </Routes>
             <Footer />
