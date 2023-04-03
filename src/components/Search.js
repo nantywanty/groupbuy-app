@@ -8,22 +8,19 @@ export default function Search() {
   const location = useLocation();
   const [searchResults, setSearchResults] = useState([]);
 
-  useEffect(() => {
-    async function getListingsFromAPI() {
-      console.log(location.state);
-      const responsePromise = await fetch(
-        "http://Gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/search_listings/",
-        {
-          method: "POST",
-          body: JSON.stringify(location.state),
-        }
-      ); 
-      const responseJSON = await responsePromise.json();
-      const searchResults = responseJSON.data.search_info;
-      setSearchResults([...searchResults]);
-    }
-    getListingsFromAPI();
-  }, []);
+  async function getListingsFromAPI() {
+    const responsePromise = await fetch(
+      "http://Gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/search_listings/",
+      {
+        method: "POST",
+        body: JSON.stringify(location.state),
+      }
+    );
+    const responseJSON = await responsePromise.json();
+    const searchResults = responseJSON.data.search_info;
+    setSearchResults([...searchResults]);
+  }
+  getListingsFromAPI();
 
   return (
     <>
