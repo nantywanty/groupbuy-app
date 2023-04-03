@@ -10,7 +10,7 @@ export default function Login(props) {
                 // User logged in
                 <NavDropdown title = {
                     <div className="d-flex gap-2">
-                        <img src={props.user.picture} class="rounded-circle" height={30} alt="user"></img>
+                        <img src={props.user.picture} className="rounded-circle" height={30} alt="user"></img>
                         {props.user.name}
                     </div>
                 }>
