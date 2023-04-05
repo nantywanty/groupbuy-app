@@ -22,7 +22,7 @@ export default function MyOrders(props) {
                 setOrders(Object.values(data.data.user_orders_info));
                 setListings(Object.values(data.data.associated_listings_info));
             })
-    }, []);
+    });
 
     return (
         <div className="p-3"> 

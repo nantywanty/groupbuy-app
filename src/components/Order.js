@@ -1,18 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Card, FloatingLabel, Form, Row, Col, Button } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
 
 export default function Order(props) {
+    const navigate = useNavigate()
+
     // Form data
     const [form, setForm] = useState({
-        quantity: 1,
-        address: props.order ? props.order.order_address : '',
-        postal_code: props.order ? props.order.order_postal_code : '',
-        contact_details: props.order ? props.order.order_contact_details : '',
+        // order_owner: props.user.email, //actual
+        order_owner: "ywhdarius@gmail.com", //test
+        listing_id: props.listing.listing_id,
+        order_quantity: 1,
+        order_contact_details: props.order ? props.order.order_contact_details : '',
+        order_address: props.order ? props.order.order_address : '',
+        order_postal_code: props.order ? props.order.order_postal_code : '',
     });
 
     // When an input field is changed
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        setForm({ ...form, [e.target.name]: e.target.name === "order_quantity" ? Number(e.target.value) : e.target.value });
     }
 
     // When submit button is clicked
@@ -22,9 +28,37 @@ export default function Order(props) {
             event.stopPropagation();
         } else {
             event.preventDefault();
-            console.log(form);
+            props.order ? (
+                fetch('http://gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/edit_order/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        order_id: props.order.order_id,
+                        order_address: form.order_address,
+                        order_postal_code: form.order_postal_code,
+                        order_contact_details: form.order_contact_details,
+                        order_quantity: form.order_quantity
+                    })
+                })
+                .then(response => response.json())
+                .then(navigate("/myorders"))
+            ):(
+                fetch('http://Gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/submit_order/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(form)
+                })
+                .then(response => response.json())
+                .then(navigate("/myorders"))
+            );
         }
     };
+
+    // When cancel button is clicked
+    const handleCancel = () => {
+        console.log("Order cancelled");
+        navigate("/myorders")
+    }
 
     return (
         <div className="p-5" style={{
@@ -72,13 +106,13 @@ export default function Order(props) {
                                 <FloatingLabel controlId="floatingQuantity" label="Quantity">
                                     <Form.Select 
                                         as={"input"} 
-                                        name="quantity" 
+                                        name="order_quantity" 
                                         placeholder="dummy"
-                                        value={form.quantity} 
+                                        value={form.order_quantity} 
                                         onChange={handleChange} 
                                         required
                                     >
-                                        {Array(props.listing.listing_remaining_quantity).fill(1).map((n, i) => (
+                                        {[...Array(props.listing.listing_remaining_quantity).keys()].map((i) => (
                                             <option key={i}>{1+i}</option>
                                         ))}
                                     </Form.Select>
@@ -93,9 +127,9 @@ export default function Order(props) {
                                 <FloatingLabel  controlId="floatingAddress" label="Delivery Address">
                                     <Form.Control 
                                         type="text" 
-                                        name="address" 
+                                        name="order_address" 
                                         placeholder="dummy" 
-                                        value={form.address} 
+                                        value={form.order_address} 
                                         onChange={handleChange} 
                                         required
                                     />
@@ -106,9 +140,9 @@ export default function Order(props) {
                                     <Form.Control 
                                         type="tel" 
                                         pattern="[0-9]{6}"  
-                                        name="postal_code" 
+                                        name="order_postal_code" 
                                         placeholder="dummy" 
-                                        value={form.postal_code} 
+                                        value={form.order_postal_code} 
                                         onChange={handleChange} 
                                         required
                                     />
@@ -119,18 +153,26 @@ export default function Order(props) {
                             <Form.Control 
                                 type="tel" 
                                 pattern="[0-9]{8}" 
-                                name="contact_details" 
+                                name="order_contact_details" 
                                 placeholder="dummy" 
-                                value={form.contact_details} 
+                                value={form.order_contact_details} 
                                 onChange={handleChange} 
                                 required/>
                         </FloatingLabel>
                         <Row className="mb-1">
                             <Col style={{ display: 'flex', alignItems: 'center' }}>
-                                <Card.Title>Total: ${(props.listing.listing_unit_price*form.quantity).toFixed(2)}</Card.Title>
+                                <Card.Title>Total: ${(props.listing.listing_unit_price*form.order_quantity).toFixed(2)}</Card.Title>
+                            </Col>
+                            
+                            <Col xs="auto">
+                                {props.order ? (<Button variant="secondary" onClick={handleCancel}>Cancel Order</Button>):(<div />)}
                             </Col>
                             <Col xs="auto">
-                                <Button variant="danger" type="submit">Submit</Button>
+                                {props.order ? (
+                                    <Button variant="danger" type="submit">Save Changes</Button>
+                                ):(
+                                    <Button variant="danger" type="submit">Save Changes</Button>
+                                )}
                             </Col>
                         </Row>
                     </Form>
