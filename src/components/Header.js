@@ -59,9 +59,6 @@ export default function Header(props) {
                 <Nav.Link as={Link} to="/myorders">
                   My Orders
                 </Nav.Link>
-                <Nav.Link as={Link} to="/order">
-                  Order
-                </Nav.Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
