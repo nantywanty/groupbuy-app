@@ -7,8 +7,8 @@ export default function Order(props) {
 
     // Form data
     const [form, setForm] = useState({
-        // order_owner: props.user.email, //actual
-        order_owner: "ywhdarius@gmail.com", //test
+        order_owner: props.user.email, //actual
+        // order_owner: "ywhdarius@gmail.com", //test
         listing_id: props.listing.listing_id,
         order_quantity: 1,
         order_contact_details: props.order ? props.order.order_contact_details : '',

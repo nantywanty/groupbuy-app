@@ -13,8 +13,8 @@ export default function MyOrders(props) {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            // body: JSON.stringify({ order_owner: props.user ? props.user.email : null }) // pull user's orders
-            body: JSON.stringify({ order_owner: "ywhdarius@gmail.com" }) // pull test orders
+            body: JSON.stringify({ order_owner: props.user ? props.user.email : null }) // actual
+            // body: JSON.stringify({ order_owner: "ywhdarius@gmail.com" }) // test
         };
         fetch('http://Gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/get_orders_for_user/', requestOptions)
             .then(response => response.json())
