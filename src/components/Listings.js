@@ -20,13 +20,13 @@ export default function Listings(props) {
   }, []);
 
   return (
-    <>
-      <h2>All Listings</h2>
+    <div className="p-3">
+      <h2 className="p-2">All Listings</h2>
       <CardGroup>
         {listings.map((listing) => {
           return (
-            <div key={listing.listing_id}>
-              <Card bg="light" border="dark" style={{ width: "18rem" }}>
+            <div className="m-2" key={listing.listing_id}>
+              <Card bg="light" style={{ width: "18rem" }}>
                 <Card.Img
                   variant="top"
                   src={listing.listing_image_url}
@@ -52,22 +52,26 @@ export default function Listings(props) {
                   </ListGroup.Item>
                 </ListGroup>
                 <Card.Footer>
-                  <Button
-                    variant="danger"
-                    onClick={() => {
-                      props.setOrder(null);
-                      props.setListing(listing);
-                      navigate("/order");
-                    }}
-                  >
-                    Place Order
-                  </Button>
+                    {props.user ? (
+                        <Button
+                            variant="danger"
+                            onClick={() => {
+                                props.setOrder(null);
+                                props.setListing(listing);
+                                navigate("/order");
+                            }}
+                        >
+                            Place Order
+                        </Button>
+                    ):(
+                        <Button variant="secondary" disabled>Place Order</Button>
+                    )}  
                 </Card.Footer>
               </Card>
             </div>
           );
         })}
       </CardGroup>
-    </>
+    </div>
   );
 }

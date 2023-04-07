@@ -38,18 +38,13 @@ export default function App() {
           <Route path="/mylistings" element={<MyListings user={user} />} />
           <Route
             path="/listings"
-            element={<Listings setOrder={setOrder} setListing={setListing} />}
+            element={<Listings user={user} setOrder={setOrder} setListing={setListing} />}
           />
           <Route
             path="/myorders"
             key={Date.now()}
             element={
-              <MyOrders
-                user={user}
-                setOrder={setOrder}
-                setListing={setListing}
-              />
-            }
+              <MyOrders user={user} setOrder={setOrder} setListing={setListing} />}
           />
           <Route
             path="/order"
