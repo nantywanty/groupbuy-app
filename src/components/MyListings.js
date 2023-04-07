@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Card } from 'react-bootstrap';
 
 export default function MyListings(props) {
   const [image, setImage] = useState(null);
@@ -40,9 +41,14 @@ export default function MyListings(props) {
   };
 
   return props.user ? (
-    <div>
-      <div className="container">
-        <h1>Create a Product Listing</h1>
+    <div className="p-5" style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }}>
+      <Card style = {{width: '45rem'}}>
+        <Card.Header as="h5">Create a Product Listing</Card.Header>
+        <Card.Body>
         <div className="form-group">
           <div className="form-group">
             <label>Upload an image of your product:</label>
@@ -149,12 +155,18 @@ export default function MyListings(props) {
             Add Listing
           </button>
         </div>
-      </div>
+        </Card.Body>
+        </Card>
     </div>
   ) : (
-    <div>
-      <div className="container">
-        <h1>Create a Product Listing</h1>
+    <div className="p-5" style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    }}>
+      <Card style = {{width: '45rem'}}>
+        <Card.Header as="h5">Create a Product Listing</Card.Header>
+        <Card.Body>
         <div className="form-group">
           <div className="form-group">
             <label>Upload an image of your product:</label>
@@ -266,7 +278,8 @@ export default function MyListings(props) {
           </button>
           <p>Please log in as a Grouper in order to create a listing</p>
         </div>
-      </div>
+        </Card.Body>
+      </Card>
     </div>
   );
 }
