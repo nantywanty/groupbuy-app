@@ -1,7 +1,5 @@
-# GroupBuy App
-
-Developed by:
-
+# Grouper Front End
+Web application developed by:
 - Darius Yip
 - Dennis Ang
 - Liu Yue
