@@ -20,7 +20,7 @@ export default function MyListings(props) {
     if (image !== null) {
       formField.append("image", image);
     }
-    formField.append("listing_owner", listing_owner);
+    formField.append("listing_owner", props.user.email);
     formField.append("listing_name", listing_name);
     formField.append("listing_description", listing_description);
     formField.append("listing_unit_price", listing_unit_price);
@@ -39,7 +39,7 @@ export default function MyListings(props) {
     });
   };
 
-  return (
+  return props.user ? (
     <div>
       <div className="container">
         <h1>Create a Product Listing</h1>
@@ -61,9 +61,8 @@ export default function MyListings(props) {
               className="form-control form-control-lg"
               placeholder="Enter Your Email"
               name="listing_owner"
-              value={props.user ? props.user.email : listing_name}
-              onChange={(e) => setListing_owner(e.target.value)}
-              disabled={props.user ? "disabled" : ""}
+              value={props.user.email}
+              disabled
             />
             <br></br>
           </div>
@@ -142,9 +141,130 @@ export default function MyListings(props) {
             />
             <br></br>
           </div>
-          <button className="btn-btn-success" onClick={AddProductInfo}>
+          <button
+            className="btn-btn-success"
+            onClick={AddProductInfo}
+            disabled={props.user ? "" : "disabled"}
+          >
             Add Listing
           </button>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div>
+      <div className="container">
+        <h1>Create a Product Listing</h1>
+        <div className="form-group">
+          <div className="form-group">
+            <label>Upload an image of your product:</label>
+            <input
+              type="file"
+              className="form-control form-control-lg"
+              name="image"
+              onChange={(e) => setImage(e.target.files[0])}
+              disabled
+            />
+            <br></br>
+          </div>
+          <div className="form-group">
+            <label>Your Grouper Email:</label>
+            <input
+              type="email"
+              className="form-control form-control-lg"
+              placeholder="Enter Your Email"
+              name="listing_owner"
+              value={listing_owner}
+              onChange={(e) => setListing_owner(e.target.value)}
+              disabled
+            />
+            <br></br>
+          </div>
+          <div className="form-group">
+            <label>Name of Product Listing:</label>
+            <input
+              type="text"
+              className="form-control form-control-lg"
+              placeholder="Give a name for your listing"
+              name="listing_name"
+              value={listing_name}
+              onChange={(e) => setListing_name(e.target.value)}
+              disabled
+            />
+            <br></br>
+          </div>
+          <div className="form-group">
+            <label>Short Description of Product Listing:</label>
+            <textarea
+              type="text"
+              className="form-control form-control-lg"
+              placeholder="Short description of your listing"
+              name="listing_description"
+              value={listing_description}
+              onChange={(e) => setListing_description(e.target.value)}
+              disabled
+            ></textarea>
+            <br></br>
+          </div>
+          <label>Unit Price:</label>
+          <div className="form-group">
+            <input
+              type="number"
+              className="form-control form-control-lg"
+              min="0"
+              step="0.01"
+              name="listing_unit_price"
+              value={listing_unit_price}
+              onChange={(e) => setListing_unit_price(e.target.value)}
+              disabled
+            />
+            <br></br>
+          </div>
+          <label>Quantity available:</label>
+          <div className="form-group">
+            <input
+              type="number"
+              className="form-control form-control-lg"
+              min="0"
+              step="1"
+              name="listing_max_quantity"
+              value={listing_max_quantity}
+              onChange={(e) => {
+                setListing_max_quantity(e.target.value);
+                setListing_remaining_quantity(e.target.value);
+              }}
+              disabled
+            />
+            <br></br>
+          </div>
+          <div className="form-group">
+            <label>Closing date of listing (2359 hrs):</label>
+            <input
+              type="date"
+              className="form-control form-control-lg"
+              name="listing_end_date"
+              value={listing_end_date}
+              onChange={(e) => setListing_end_date(e.target.value)}
+              disabled
+            />
+            <br></br>
+          </div>
+          <label>Product Delivery Date:</label>
+          <div className="form-group">
+            <input
+              type="date"
+              className="form-control form-control-lg"
+              name="listing_delivery_date"
+              value={listing_delivery_date}
+              onChange={(e) => setListing_delivery_date(e.target.value)}
+              disabled
+            />
+            <br></br>
+          </div>
+          <button className="btn-btn-success" onClick={AddProductInfo} disabled>
+            Add Listing
+          </button>
+          <p>Please log in as a Grouper in order to create a listing</p>
         </div>
       </div>
     </div>
