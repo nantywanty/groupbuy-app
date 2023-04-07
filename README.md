@@ -1,14 +1,21 @@
-# Grouper Front End
-Web application developed by:
+# Grouper App
+Web application for coordinating and joining group purchases.
+
+Developed by:
 - Darius Yip
 - Dennis Ang
 - Liu Yue
 - Nant Arunyawongsakorn
 
+## React Front End
 Requirements:
 - Node version 19.7.0
 - npm version 9.5.0
 
-To install required packages, run `npm install`
+Navigate to frontend folder: `cd frontend`
 
-To start the front end server, run `npm start`
+Install required packages: `npm install`
+
+Start the server: `npm start`
+
+## Django Back End
