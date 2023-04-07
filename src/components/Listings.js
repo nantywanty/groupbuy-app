@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
 import ListGroup from "react-bootstrap/ListGroup";
+import { Card, CardGroup, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-export default function Listings() {
+export default function Listings(props) {
+  const navigate = useNavigate();
   const [listings, setListings] = useState([]);
 
   useEffect(() => {
@@ -50,9 +51,18 @@ export default function Listings() {
                     Delivery date: {listing.listing_delivery_date}
                   </ListGroup.Item>
                 </ListGroup>
-                <Card.Body className="d-flex flex-column justify-content-end align-items-center">
-                  <Card.Link href="#">Place Order</Card.Link>
-                </Card.Body>
+                <Card.Footer>
+                  <Button
+                    variant="danger"
+                    onClick={() => {
+                      props.setOrder(null);
+                      props.setListing(listing);
+                      navigate("/order");
+                    }}
+                  >
+                    Place Order
+                  </Button>
+                </Card.Footer>
               </Card>
             </div>
           );
