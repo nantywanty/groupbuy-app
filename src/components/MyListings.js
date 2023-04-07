@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function MyListings() {
+export default function MyListings(props) {
   const [image, setImage] = useState(null);
   const [listing_owner, setListing_owner] = useState("");
   const [listing_name, setListing_name] = useState("");
@@ -61,8 +61,9 @@ export default function MyListings() {
               className="form-control form-control-lg"
               placeholder="Enter Your Email"
               name="listing_owner"
-              value={listing_owner}
+              value={props.user ? props.user.email : listing_name}
               onChange={(e) => setListing_owner(e.target.value)}
+              disabled={props.user ? "disabled" : ""}
             />
             <br></br>
           </div>
