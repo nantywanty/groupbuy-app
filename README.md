@@ -11,4 +11,4 @@ Requirements:
 
 To install required packages, run `npm install`
 
-To start the development server, run `npm start`
+To start the front end server, run `npm start`
