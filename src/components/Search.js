@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import Card from "react-bootstrap/Card";
-import CardGroup from "react-bootstrap/CardGroup";
+import React, { useState } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import { useLocation } from "react-router-dom";
+import { Card, CardGroup, Button } from "react-bootstrap";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function Search() {
+export default function Search(props) {
+  const navigate = useNavigate();
   const location = useLocation();
   const [searchResults, setSearchResults] = useState([]);
 
@@ -55,9 +55,18 @@ export default function Search() {
                     Delivery date: {searchResult.listing_delivery_date}
                   </ListGroup.Item>
                 </ListGroup>
-                <Card.Body>
-                  <Card.Link href="#">Place Order</Card.Link>
-                </Card.Body>
+                <Card.Footer>
+                  <Button
+                    variant="danger"
+                    onClick={() => {
+                      props.setOrder(null);
+                      props.setListing(searchResult);
+                      navigate("/order");
+                    }}
+                  >
+                    Place Order
+                  </Button>
+                </Card.Footer>
               </Card>
             </div>
           );
