@@ -51,7 +51,7 @@ export default function Header(props) {
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link as={Link} to="/mylistings">
-                  My Listings
+                  Create New Listing
                 </Nav.Link>
                 <Nav.Link as={Link} to="/listings">
                   All Listings
