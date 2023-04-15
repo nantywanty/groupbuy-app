@@ -10,7 +10,7 @@ export default function Listings(props) {
   useEffect(() => {
     async function getListingsFromAPI() {
       const responsePromise = await fetch(
-        "http://gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/get_listings"
+        "http://Gbbackendserver-env.eba-farf3wjj.us-east-1.elasticbeanstalk.com/get_listings"
       );
       const responseJSON = await responsePromise.json();
       const listings = responseJSON.data.listings_info;
