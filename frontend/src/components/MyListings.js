@@ -32,7 +32,7 @@ export default function MyListings(props) {
 
     await axios({
       method: "post",
-      url: "http://Gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/create_listing/",
+      url: "http://Gbbackendserver-env.eba-farf3wjj.us-east-1.elasticbeanstalk.com/create_listing/",
       data: formField,
     }).then((response) => {
       console.log(response.data);
