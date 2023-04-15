@@ -29,7 +29,7 @@ export default function Listings(props) {
               <Card bg="light" style={{ width: "18rem" }}>
                 <Card.Img
                   variant="top"
-                  src={listing.listing_image_url}
+                  src={listing.listing_cloudfront_url}
                   height="250"
                   width="auto"
                 />
