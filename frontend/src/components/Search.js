@@ -32,7 +32,7 @@ export default function Search(props) {
               <Card bg="light" border="dark" style={{ width: "18rem" }}>
                 <Card.Img
                   variant="top"
-                  src={searchResult.listing_image_url}
+                  src={searchResult.listing_cloudfront_url}
                   height="250"
                   width="auto"
                 />
