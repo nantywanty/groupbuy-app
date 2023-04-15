@@ -10,7 +10,7 @@ export default function Search(props) {
 
   async function getListingsFromAPI() {
     const responsePromise = await fetch(
-      "http://Gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/search_listings/",
+      "http://Gbbackendserver-env.eba-farf3wjj.us-east-1.elasticbeanstalk.com/search_listings/",
       {
         method: "POST",
         body: JSON.stringify(location.state),
