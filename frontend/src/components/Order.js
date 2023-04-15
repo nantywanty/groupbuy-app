@@ -29,7 +29,7 @@ export default function Order(props) {
         } else {
             event.preventDefault();
             props.order ? (
-                fetch('http://gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/edit_order/', {
+                fetch('http://Gbbackendserver-env.eba-farf3wjj.us-east-1.elasticbeanstalk.com/edit_order/', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -43,7 +43,7 @@ export default function Order(props) {
                 .then(response => response.json())
                 .then(navigate("/myorders"))
             ):(
-                fetch('http://Gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/submit_order/', {
+                fetch('http://Gbbackendserver-env.eba-farf3wjj.us-east-1.elasticbeanstalk.com/submit_order/', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(form)
@@ -72,7 +72,7 @@ export default function Order(props) {
                 ):(
                     <Card.Header as="h5">New Order</Card.Header>
                 )}
-                <Card.Img className="px-3 pt-3"  src={props.listing.listing_image_url}/>
+                <Card.Img className="px-3 pt-3"  src={props.listing.listing_cloudfront_url}/>
                 <Card.Body>
                     <Row className="mb-3">
                         <Col>
@@ -171,7 +171,7 @@ export default function Order(props) {
                                 {props.order ? (
                                     <Button variant="danger" type="submit">Save Changes</Button>
                                 ):(
-                                    <Button variant="danger" type="submit">Save Changes</Button>
+                                    <Button variant="danger" type="submit">Place Order</Button>
                                 )}
                             </Col>
                         </Row>

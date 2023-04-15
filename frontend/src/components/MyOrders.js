@@ -16,7 +16,7 @@ export default function MyOrders(props) {
             body: JSON.stringify({ order_owner: props.user ? props.user.email : null }) // actual
             // body: JSON.stringify({ order_owner: "ywhdarius@gmail.com" }) // test
         };
-        fetch('http://Gbbackendserverebs-env.eba-x3jnjej6.us-east-1.elasticbeanstalk.com/get_orders_for_user/', requestOptions)
+        fetch('http://Gbbackendserver-env.eba-farf3wjj.us-east-1.elasticbeanstalk.com/get_orders_for_user/', requestOptions)
             .then(response => response.json())
             .then(data => {
                 setOrders(Object.values(data.data.user_orders_info));
@@ -37,7 +37,7 @@ export default function MyOrders(props) {
                         return (
                             <div className="m-2" key={idx}>   
                                 <Card style = {{width: '20rem'}}>
-                                    <Card.Img className="px-3 pt-3"  src={listing.listing_image_url}/>
+                                    <Card.Img className="px-3 pt-3"  src={listing.listing_cloudfront_url}/>
                                     <Card.Body>
                                         <Card.Title>{listing.listing_name }</Card.Title>
                                         <Card.Subtitle className="mb-2 text-muted">Sold by: {listing.listing_owner}</Card.Subtitle>
