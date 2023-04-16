@@ -8,21 +8,16 @@ Developed by:
 - Nant Arunyawongsakorn
 
 ## React Front End
-Set up to run on AWS EC2 at `http://ec2-52-203-124-19.compute-1.amazonaws.com:3000/`
-
-Please notify Nant to start the server if testing is required.
+Set up to run on AWS EC2 at `http://ec2-52-203-124-19.compute-1.amazonaws.com:3000/` under a learner lab envinronment. The server will be paused whenever the lab session is closed. Please notify Nant to restart the server if testing is required.
 
 Requirements:
-<ul>
-<li>Node version 19.7.0</li>
-<li>npm version 9.5.0</li>
-</ul>
+- Node version 19.7.0</li>
+- npm version 9.5.0</li>
   
-<ol>
-<li>Navigate to frontend folder: `cd frontend`</li>
-<li>Install required packages: `npm install`</li>
-<li>Start the server: `npm start`</li>
-</ol>
+
+1. Navigate to frontend folder: `cd frontend`</li>
+2. Install required packages: `npm install`</li>
+3. Start the server: `npm start`</li>
 
 ## Django Back End
 (Using AWS Elastic Beanstalk console as cannot be done via CLI for AWS Learner Environment)
