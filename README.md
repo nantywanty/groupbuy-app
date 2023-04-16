@@ -12,17 +12,17 @@ Set up to run on AWS EC2 at `http://ec2-52-203-124-19.compute-1.amazonaws.com:30
 
 Please notify Nant to start the server if testing is required.
 
-### Steps to run on local server:
-
 Requirements:
-- Node version 19.7.0
-- npm version 9.5.0
-
-Navigate to frontend folder: `cd frontend`
-
-Install required packages: `npm install`
-
-Start the server: `npm start`
+<ul>
+<li>Node version 19.7.0</li>
+<li>npm version 9.5.0</li>
+</ul>
+  
+<ol>
+<li>Navigate to frontend folder: `cd frontend`</li>
+<li>Install required packages: `npm install`</li>
+<li>Start the server: `npm start`</li>
+</ol>
 
 ## Django Back End
 (Using AWS Elastic Beanstalk console as cannot be done via CLI for AWS Learner Environment)
@@ -36,6 +36,7 @@ Currently running on AWS ELB at `http://Gbbackendserver-env.eba-farf3wjj.us-east
 </ol>
 
 ## AWS Lambda
+
 <ol>
 <li>Navigate to the root directory of the lambda function directory - 'cd ./lambda_close_listings'</li>
 <li>Navigate into the dependencies/packages directory - 'cd ./.package'</li>
